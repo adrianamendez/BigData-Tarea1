@@ -20,9 +20,15 @@ from django.views.generic import TemplateView
 
 from . import views
 urlpatterns = [
-    path('admin/', admin.site.urls),
+     path('admin/', admin.site.urls),
      path('', views.index, name='index'),
-    # url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+     path('puntoA/', views.puntoA, name='puntoA'),
+     path('puntoB/', views.puntoB, name='puntoB'),
+     path('puntoC/', views.puntoC, name='puntoC'),
+     path('puntoD/', views.puntoD, name='puntoD'),
+     path('puntoE/', views.puntoE, name='puntoE'),
+     path('puntoF/', views.puntoF, name='puntoF'),
+   #  path('process/', views.response1, name='process'),
 
 ]
 

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+    <form name = "form" method = "POST" action="">{% csrf_token %}
+  <div class="form-group">
+    <div class="container">
+
+   <br>
+     <br>
+    <h3><a href="/">Volver a las opciones </a></h3>
+   <br>
+   <br>
+    <!-- INICIO DEL PUNTO UNO-->
+     <h3>Complete la aplicación para que ahora se pueda ejecutar cualquiera de los retos, tomando los parámetros de ejecución y mostrando los resultados en la aplicación Web..</h3>
+    <br>
+        <h2>Retos</h2>
+     <label for="lfname">a) Encuentre cuántas palabras hay en UNO de los archivos del dataset. Su grupo selecciona con cuál archivo realizan el ejercicio. </label>
+     <label for="lfname">b) Encuentre cuántas veces aparece cada palabra presente EN EL MISMO archivo seleccionado en el reto anterior. Ahora, el nombre del archivo seleccionado se recibe como parámetro del proceso. </label>
+     <label for="lfname">c) Encuentre las N palabras más frecuentes en el archivo anterior, con su frecuencia de aparición. N es un parámetro del proceso. </label>
+     <label for="lfname">d) Repita los retos anteriores, realizando el trabajo sobre DOS archivos, en EL MISMO proceso. </label>
+     <label for="lfname">e) Repita los retos anteriores, realizando el trabajo sobre un número X de archivos, cuyos nombres se reciben como parámetro del proceso. Se sugiere que X sea máximo 3. </label>
+     <label for="lfname">f) Realice un proceso que indique en cuál archivo aparece más veces cierta palabra y cuál archivo tiene más palabras, dentro de un grupo de X archivos seleccionados como parámetro.     </label>
+      <br>
+        <br>
+
+    <h2>Seleccione uno o varios archivos</h2>
+
+      <select class="custom-select" id="selected_file1" name="selected_file">
+
+    <option selected>Seleccione un archivo</option>
+        {% for dt in data %}
+
+            <option value="{{ dt }}">{{ dt }}</option>
+        {% endfor %}
+      </select>
+     <br>
+      <br>
+        <br>
+     <select class="custom-select" id="selected_file2" name="selected_file">
+      <option selected>Seleccione un archivo</option>
+        {% for dt in data %}
+
+            <option value="{{ dt }}">{{ dt }}</option>
+        {% endfor %}
+      </select>
+     <br>
+      <br>
+        <br>
+    <select class="custom-select" id="selected_file3" name="selected_file">
+      <option selected>Seleccione un archivo</option>
+        {% for dt in data %}
+
+            <option value="{{ dt }}">{{ dt }}</option>
+        {% endfor %}
+      </select>
+      <br>
+        <br>
+    <input type="submit" class="btn btn-primary" value="Enviar"/>
+    </Scr>
+        <br>
+        <br>
+       {% if totalWords %}
+             <label for="lfname">El total de palabras es {{ totalWords }}</label>
+       {% endif %}
+        <!-- FIN DEL PUNTO UNO-->
+    </div>
+  </div>
+    </form>
+{% endblock %}

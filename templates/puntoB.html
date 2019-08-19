@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <br>
+   <br>
+   <br>
+   <br>
+    <form name = "form" method = "POST" action="/puntoB/">{% csrf_token %}
+  <div class="form-group">
+    <div class="container">
+      <br>
+    <h3><a href="/">Volver a las opciones </a></h3>
+      <br>
+    <br>
+    <br>
+     <!-- INICIO DEL PUNTO DOS-->
+      <br>
+    <br>
+     <label for="lfname"> b) Modifique la aplicación Web para que, ahora, se muestren los nombres de los archivos disponibles para el ejercicio y el usuario escriba el nombre de aquel con el que quiere trabajar el mismo reto anterior.</label>
+     <br>
+    <br>
+
+    <table class="table table-sm">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Archivos disponibles</th>
+    </tr>
+  </thead>
+      <tbody>
+            {% for dt in data %}
+
+                 <tr >
+                  <td > {{ dt }}</td>
+                </tr>
+            {% endfor %}
+
+      </tbody>
+    </table>
+    <br>
+    <br>
+  <div class="form-group">
+    <label for="lbl_p2">Ingrese el nombre del archivo que desea ejecutar</label>
+    <input type="text" class="form-control" id="textfield_p2"  placeholder="Nombre del Archivo" name="textfield_p2">
+       {% if totalWords == -1 %}
+          <small id="textErrordHelp" class="text-danger">
+              Debe ingresar un nombre de archivo válido
+          </small>
+       {% elif totalWords > 0 %}
+             <label for="lfname">El total de palabras es {{ totalWords }}</label>
+        {% endif %}
+   </div>
+  <input type="submit" class="btn btn-primary" value="Enviar"/>
+    </div>
+     </div>
+    </form>
+{% endblock %}

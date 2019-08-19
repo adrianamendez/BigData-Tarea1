@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <br>
+   <br>
+   <br>
+   <br>
+
+    <form name = "form" method = "POST" action="/puntoA/">{% csrf_token %}
+  <div class="form-group">
+    <div class="container">
+      <br>
+    <h3><a href="/">Volver a las opciones </a></h3>
+      <br>
+    <br>
+    <br>
+    <!-- INICIO DEL PUNTO UNO-->
+     <label for="lfname"> a) Desarrolle una aplicación Web que le permita ejecutar el primero de los retos anteriores por iniciativa de un usuario, desde un navegador Web. Permita que el usuario indique el nombre del archivo de trabajo.</label>
+     <br>
+    <Scr class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Opciones</label>
+      </div>
+
+      <select class="custom-select" id="selected_file" name="selected_file">
+
+    <option selected>Seleccione un archivo</option>
+        {% for dt in data %}
+
+            <option value="{{ dt }}">{{ dt }}</option>
+        {% endfor %}
+      </select>
+    <input type="submit" class="btn btn-primary" value="Enviar"/>
+    </Scr>
+        <br>
+        <br>
+       {% if totalWords %}
+             <label for="lfname">El total de palabras es {{ totalWords }}</label>
+       {% endif %}
+        <!-- FIN DEL PUNTO UNO-->
+    </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+       </div>
+    </form>
+{% endblock %}
