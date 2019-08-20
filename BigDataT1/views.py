@@ -50,9 +50,10 @@ def puntoB(request):
 
     totalWords = 0
     split_list = get_listSplit()
+    selected = ""
     if request.method == 'POST':
         totalWords = -1
-        selected = ""
+
 
         if request.POST.get('textfield_p2'):
             selected = request.POST.get('textfield_p2')
