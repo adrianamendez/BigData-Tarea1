@@ -3,7 +3,7 @@
 
 
 
-    <form name = "form" method = "POST" action="">{% csrf_token %}
+    <form name = "form" method = "POST" action="/puntoE/">{% csrf_token %}
   <div class="form-group">
     <div class="container">
 
@@ -27,59 +27,93 @@
 
     <h2>Seleccione uno o varios archivos</h2>
 
-      <select class="custom-select" id="selected_file1" name="selected_file">
-
-    <option selected>Seleccione el primer archivo</option>
+     <select class="custom-select"  name="file_1">
+      <option selected>Seleccione el primer archivo</option>
         {% for dt in data %}
 
             <option value="{{ dt }}">{{ dt }}</option>
         {% endfor %}
       </select>
-    <div class="form-group">
+    <!--  <div class="form-group">
      <br>
-    <label for="lbl_p2">Ingrese el la palabra que desea buscar para el archivo 1</label>
+  <label for="lbl_p2">Ingrese el la palabra que desea buscar para el archivo 1</label>
     <input type="text" class="form-control"  placeholder="Palabara para el archivo 1" name="textfield_archivo_1">
-   </div>
+
+   </div>  -->
      <br>
       <br>
         <br>
-     <select class="custom-select" id="selected_file2" name="selected_file">
+     <select class="custom-select"  name="file_2">
       <option selected>Seleccione el segundo archivo</option>
         {% for dt in data %}
 
             <option value="{{ dt }}">{{ dt }}</option>
         {% endfor %}
       </select>
-      <div class="form-group">
+    <!--    <div class="form-group">
       <br>
     <label for="lbl_p2">Ingrese el la palabra que desea buscar para el archivo 2</label>
     <input type="text" class="form-control"  placeholder="Palabara para el archivo 2" name="textfield_archivo21">
-   </div>
+
+   </div>    -->
      <br>
       <br>
         <br>
-    <select class="custom-select" id="selected_file3" name="selected_file">
+    <select class="custom-select" name="file_3">
       <option selected>Seleccione el tercer archivo</option>
         {% for dt in data %}
 
             <option value="{{ dt }}">{{ dt }}</option>
         {% endfor %}
       </select>
-    <div class="form-group">
+   <!-- <div class="form-group">
         <br>
     <label for="lbl_p2">Ingrese el la palabra que desea buscar para el archivo 3</label>
     <input type="text" class="form-control"  placeholder="Palabara para el archivo 3" name="textfield_archivo_3">
-   </div>
+
+   </div>  -->
       <br>
-        <br>
+      <br>
+    <label for="lbl_p2">Ingrese el la palabra que desea buscar en el o los archivos seleccionados</label>
+    <input type="text" class="form-control"  placeholder="Palabra a buscar" name="keyword_archivo">
+
+    <br>
+    <br>
     <input type="submit" class="btn btn-primary" value="Enviar"/>
     </Scr>
         <br>
         <br>
-       {% if totalWords %}
-             <label for="lfname">El total de palabras es {{ totalWords }}</label>
+
+       {% if totalWords_file1 > 0 %}
+             <label for="lfname">Para el primer archivo {{ filename1 }} , el total de palabras es {{ totalWords_file1 }}.</label>
+
        {% endif %}
-        <!-- FIN DEL PUNTO UNO-->
+     <br>
+        <br>
+
+       {% if totalWords_file2 > 0 %}
+             <label for="lfname">Para el segundo archivo {{ filename2 }} , el total de palabras es {{ totalWords_file2 }}.</label>
+
+       {% endif %}
+     <br>
+        <br>
+
+       {% if totalWords_file3 > 0 %}
+             <label for="lfname">Para el tercer archivo {{ filename3 }} , el total de palabras es {{ totalWords_file3 }}.</label>
+
+       {% endif %}
+     <br>
+        <br>
+
+       {% if key_word|length > 0 %}
+             <label for="lfname">La palabra a buscar fue {{ key_word }}.</label>
+
+       {% endif %}
+
+  <br>
+        <br>
+      <br>
+        <br>
     </div>
   </div>
     </form>

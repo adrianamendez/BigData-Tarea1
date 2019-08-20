@@ -31,16 +31,19 @@ def response1(request):
 def puntoA(request):
     sorted_list = get_list()
     totalWords = 0
+    selected = ""
 
-    if request.POST.get('selected_file'):
-        selected = request.POST.get('selected_file')
-        currentdirectory = pathlib.Path('Reuters/' + selected)
-        document_text = open(currentdirectory, 'r')
-        text_string = document_text.read().lower()
-        totalWords = word_count(text_string)
+    if request.method == 'POST':
+        totalWords = -1
+        if request.POST.get('selected_file'):
+            selected = request.POST.get('selected_file')
+            currentdirectory = pathlib.Path('Reuters/' + selected)
+            document_text = open(currentdirectory, 'r')
+            text_string = document_text.read().lower()
+            totalWords = word_count(text_string)
 
 
-    return render(request, "puntoA.html", {'data': sorted_list,'totalWords':totalWords})
+    return render(request, "puntoA.html", {'data': sorted_list,'totalWords':totalWords, 'filename': selected})
 
 
 def puntoB(request):
@@ -49,8 +52,10 @@ def puntoB(request):
     split_list = get_listSplit()
     if request.method == 'POST':
         totalWords = -1
+        selected = ""
 
         if request.POST.get('textfield_p2'):
+            selected = request.POST.get('textfield_p2')
             userinput = request.POST.get('textfield_p2')
             userinput = userinput.lower()
             userfinalinput = get_FileName(userinput)
@@ -62,15 +67,24 @@ def puntoB(request):
 
 
     print(totalWords)
-    return render(request, "puntoB.html",  {'data': split_list, 'totalWords': totalWords})
-
-
+    return render(request, "puntoB.html",  {'data': split_list, 'totalWords': totalWords, 'filename': selected})
 
 
 def puntoC(request):
     sorted_list = get_list()
+    totalWords = 0
+    selected = ""
 
-    return render(request, "puntoC.html", {'data': sorted_list})
+    if request.method == 'POST':
+        totalWords = -1
+        if request.POST.get('selected_file'):
+            selected = request.POST.get('selected_file')
+            currentdirectory = pathlib.Path('Reuters/' + selected)
+            document_text = open(currentdirectory, 'r')
+            text_string = document_text.read().lower()
+            totalWords = word_count(text_string)
+
+    return render(request, "puntoC.html", {'data': sorted_list, 'totalWords': totalWords, 'filename': selected})
 
 
 def puntoD(request):
@@ -81,8 +95,55 @@ def puntoD(request):
 
 def puntoE(request):
     sorted_list = get_list()
+    totalWords_file1 = 0
+    totalWords_file2 = 0
+    totalWords_file3 = 0
+    filename1 = ""
+    filename2 = ""
+    filename3 = ""
+    key_word = ""
 
-    return render(request, "puntoE.html", {'data': sorted_list})
+    if request.method == 'POST':
+
+        if request.POST.get('keyword_archivo'):
+            key_word = request.POST.get('keyword_archivo')
+
+        if request.POST.get('file_1'):
+            totalWords_file1 = -1
+            filename1 = request.POST.get('file_1')
+            selected = request.POST.get('file_1')
+            currentdirectory = pathlib.Path('Reuters/' + selected)
+            if os.path.exists(currentdirectory):
+                document_text = open(currentdirectory, 'r')
+                text_string = document_text.read().lower()
+                totalWords_file1 = word_count(text_string)
+
+        if request.POST.get('file_2'):
+            totalWords_file2 = -1
+            filename2 = request.POST.get('file_2')
+            selected = request.POST.get('file_2')
+            currentdirectory = pathlib.Path('Reuters/' + selected)
+            if os.path.exists(currentdirectory):
+                document_text = open(currentdirectory, 'r')
+                text_string = document_text.read().lower()
+                totalWords_file2 = word_count(text_string)
+
+        if request.POST.get('file_3'):
+            totalWords_file3 = -1
+            filename3 = request.POST.get('file_3')
+            selected = request.POST.get('file_3')
+            currentdirectory = pathlib.Path('Reuters/' + selected)
+            if os.path.exists(currentdirectory):
+                document_text = open(currentdirectory, 'r')
+                text_string = document_text.read().lower()
+                totalWords_file3 = word_count(text_string)
+
+        print("totalWords_file1 " + str(totalWords_file1))
+        print("totalWords_file2 " + str(totalWords_file2))
+        print("totalWords_file3 " + str(totalWords_file3))
+        print("key_word " + key_word)
+
+    return render(request, "puntoE.html", {'data': sorted_list, 'totalWords_file1': totalWords_file1, 'totalWords_file2': totalWords_file2, 'totalWords_file3': totalWords_file3, 'filename1': filename1, 'filename2': filename2, 'filename3': filename3, "key_word":key_word})
 
 
 def puntoF(request):

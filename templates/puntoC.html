@@ -33,8 +33,13 @@
     </Scr>
         <br>
         <br>
-       {% if totalWords %}
-             <label for="lfname">El total de palabras es {{ totalWords }}</label>
+        {% if totalWords == -1 %}
+          <small id="textErrordHelp" class="text-danger">
+              Debe ingresar un nombre de archivo válido
+          </small>
+       {% elif totalWords > 0 %}
+             <label for="lfname">Para el archivo {{ filename }} , el total de palabras es {{ totalWords }}.</label>
+
        {% endif %}
         <!-- FIN DEL PUNTO UNO-->
     </div>
