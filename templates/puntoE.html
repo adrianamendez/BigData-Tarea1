@@ -86,28 +86,42 @@
 
        {% if totalWords_file1 > 0 %}
              <label for="lfname">Para el primer archivo {{ filename1 }} , el total de palabras es {{ totalWords_file1 }}.</label>
-
+             <p><b>Top de palabras repetidas</b></p> 
+             <div>{{clouddata1 | safe}}</div>
        {% endif %}
      <br>
         <br>
 
        {% if totalWords_file2 > 0 %}
              <label for="lfname">Para el segundo archivo {{ filename2 }} , el total de palabras es {{ totalWords_file2 }}.</label>
-
+             <p><b>Top de palabras repetidas</b></p>
+             <div>{{clouddata2 | safe}}</div>
        {% endif %}
      <br>
         <br>
 
        {% if totalWords_file3 > 0 %}
              <label for="lfname">Para el tercer archivo {{ filename3 }} , el total de palabras es {{ totalWords_file3 }}.</label>
-
+             <p><b>Top de palabras repetidas</b></p>
+             <div>{{clouddata3  | safe}}</div>
        {% endif %}
      <br>
         <br>
 
        {% if key_word|length > 0 %}
-             <label for="lfname">La palabra a buscar fue {{ key_word }}.</label>
-
+             <label for="lfname">Cantidad de veces en la que aparece la palabra <b>{{ key_word }}</b></label>
+       {% endif %}
+        
+       {% if key_word|length > 0 and totalWords_file1 > 0 %}
+              <label for="lfname"><b>:{{repeat_keyword1}}</b> veces en el archivo {{filename1}};</label>
+       {% endif %}
+       
+       {% if key_word|length > 0 and totalWords_file2 > 0 %} 
+              <label for="lfname"><b>:{{repeat_keyword2}}</b> veces en el archivo {{filename2}}; </label>
+       {% endif %}
+       
+       {% if  key_word|length > 0 and totalWords_file3 > 0 %}       
+             <label for="lfname"><b>:{{repeat_keyword3}}</b> veces en el archivo {{filename3}};</label>
        {% endif %}
 
   <br>
